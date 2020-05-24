@@ -1,5 +1,6 @@
 <?php
 echo $this->Form->create('TeaComponent');
+echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js');
 ?>
 <table class="table table-tea">
     <tr>
@@ -23,7 +24,12 @@ echo $this->Form->create('TeaComponent');
     <tr>
         <td>Ingredients:</td>
     </tr>
-    <?php echo $this->element('teaComponent', [0]);
+    <?php
+    echo $this->element('Teas\component', ['componentNumber' => 0]);
+    echo $this->Form->button('Add component', [
+        'onclick' => 'showNextTeaComponentRow()',
+        'type' => 'button',
+    ])
     ?>
     <!-- Ik zou een vooringevuld ingredient kunnen gebruiken door: 
 Common Options For Specific Controls 'deafult' te gebruiken. cookbook page 319 -->
@@ -35,11 +41,15 @@ Denkpistes:
     -verwijzen naar een Ingredienten pagina.
      -->
 </table>
-<script type="text/javascript">
+<script>
+    componentNumber = 0
     function showNextTeaComponentRow(){
-console.log("Working!");
-var thisTable = document.getElementsByClassName("table-ingredient")[0];
-thisTable.firstElementChild.children[2].removeAttribute('hidden');
+        $('#teaComponent').last().append(
+            $.get( "/component/htmlElement"+componentNumber, function( data ) {
+                $( ".result" ).html( data );
+                alert( "Load was performed." );
+            })
+        )
 };
 </script>
 <?php
