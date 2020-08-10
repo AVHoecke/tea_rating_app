@@ -13,37 +13,9 @@ class Ingredient extends AppModel
             'rule' => 'notBlank'
         ),
         'origin' => array(
-            // OMG TAST WAS STILL HERE!
-            // I HOPE MY "Call to a member function find() on null" DISAPPEARS NOW
-            //dam it didn't
-            // The Ingredient Model was not available! (added it throug "public $uses = array('Recipe', 'User');")
-            'rule' => 'notBlank'
+           'rule' => 'notBlank'
         )
     );
-
-    // public $hasOne = 'Quantity';
-
-    // public $hasAndBelongsToMany = array(
-    //     'Tea' =>
-    //     array(
-    //         'className' => 'Tea',
-    //         'joinTable' => 'ingredients_teas',
-    //         'associationForeignKey' => 'tea_id',
-    //         'with' => 'IngredientTea',
-    //         'unique' => true
-    //     )
-    // );
-
-    //   public $hasAndBelongsToMany = array(
-    //         'Tea' =>
-    //         array(
-    //             'className' => 'Tea',
-    //             'joinTable' => 'tea_components',
-    //             'associationForeignKey' => 'tea_id',
-    //             'with' => 'TeaComponent',
-    //             'unique' => true
-    //         )
-    //     );  
 
     public $hasMany = 'TeaComponent';
 }
