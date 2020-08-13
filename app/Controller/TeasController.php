@@ -29,7 +29,7 @@ class TeasController extends AppController
         //Add function 1.2.2 multiple TeaComponents save (W)
         $this->set('ingredients', $this->Ingredient->find('list'));
         if ($this->request->is('post')) {
-            if ($this->Tea->save($this->request->data)) {
+            gif ($this->Tea->save($this->request->data)) {
                 $currentTeaId = $this->Tea->id;
                 // pseudo: if data[teaComponents] has at least one valid teaComponent (do the teacomonenty loop)
                 foreach ($this->request->data['TeaComponent'] as $teacomponenty) {
