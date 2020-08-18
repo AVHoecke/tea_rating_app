@@ -13,8 +13,5 @@ class Quantity extends AppModel {
         )
     );
 
-    // public $belongsTo = array(
-    //     'Ingredient', 'Tea');
-
-    public $belongsTo = 'TeaComponent';
+    public $belongsTo = 'TeaConstituent';
 }

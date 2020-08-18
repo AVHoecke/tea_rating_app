@@ -14,7 +14,7 @@ $this->Html->addCrumb('View', 'view/'.$tea['Tea']['id'] );
  ?>
 <br>
 <table>
-    <?php foreach ($tea['TeaComponent'] as $teaComponent) : ?>
+    <?php foreach ($tea['TeaConstituent'] as $teaConstituent) : ?>
         <tr>
             <td>
                 <?php 
@@ -23,15 +23,15 @@ $this->Html->addCrumb('View', 'view/'.$tea['Tea']['id'] );
             </td>
         </tr>
         <tr>
-            <td><?php echo $teaComponent['Ingredient']['name']; ?></td>
+            <td><?php echo $teaConstituent['Ingredient']['name']; ?></td>
             <td>
-                <?php echo $teaComponent['Ingredient']['origin']; ?>
+                <?php echo $teaConstituent['Ingredient']['origin']; ?>
             </td>
             <td>
-                <?php echo $teaComponent['Quantity']['type']; ?>
+                <?php echo $teaConstituent['Quantity']['type']; ?>
             </td>
             <td>
-                <?php echo $teaComponent['Quantity']['amount']; ?>
+                <?php echo $teaConstituent['Quantity']['amount']; ?>
             </td>
         </tr>
     <?php endforeach; ?>

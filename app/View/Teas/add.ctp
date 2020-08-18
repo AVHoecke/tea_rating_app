@@ -1,5 +1,5 @@
 <?php
-echo $this->Form->create('TeaComponent');
+echo $this->Form->create('Tea');
 echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js');
 ?>
 <table class="table table-tea">
@@ -27,7 +27,7 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
     <?php
     echo $this->element('Teas/component', ['componentNumber' => 0]);
     echo $this->Form->button('Add component', [
-        'onclick' => 'showNextTeaComponentRow()',
+        'onclick' => 'showNextTeaConstituentRow()',
         'type' => 'button',
     ])
     ?>
@@ -44,8 +44,8 @@ Denkpistes:
 <script>
     componentNumber = 0
 
-    function showNextTeaComponentRow() {
-        $('#teaComponent').last().append(
+    function showNextTeaConstituentRow() {
+        $('#componentsTea').last().append(
             $.get("/component/htmlElement" + componentNumber, function(data) {
                 $(".result").html(data);
                 alert("Load was performed.");

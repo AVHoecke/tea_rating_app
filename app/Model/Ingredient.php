@@ -17,5 +17,5 @@ class Ingredient extends AppModel
         )
     );
 
-    public $hasMany = 'TeaComponent';
+    public $hasMany = 'TeaConstituent';
 }

@@ -10,18 +10,18 @@ class Tea extends AppModel
 {
     public $validate = array();
 
-    public $hasAndBelongsToMany = array(
-        'Ingredient' =>
-        array(
-            'className' => 'Ingredient',
-            'joinTable' => 'tea_components',
-            'associationForeignKey' => 'ingredient_id',
-            'with' => 'TeaComponent',
-            'unique' => true
-        )
-    );
+    // public $hasAndBelongsToMany = array(
+    //     'Ingredient' =>
+    //     array(
+    //         'className' => 'Ingredient',
+    //         'joinTable' => 'components_teas',
+    //         'associationForeignKey' => 'ingredient_id',
+    //         'with' => 'TeaConstituent',
+    //         'unique' => true
+    //     )
+    // );
 
-    public $hasMany = 'TeaComponent';
+    public $hasMany = 'TeaConstituent';
 
     public $hasOne = 'Rating';
 
