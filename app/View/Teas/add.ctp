@@ -25,8 +25,8 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
         <td>Ingredients:</td>
     </tr>
     <?php
-    echo $this->element('Teas/component', ['componentNumber' => 0]);
-    echo $this->Form->button('Add component', [
+    echo $this->element('TeaConstituents/singleTeaConstituent', ['constituentNumber' => 0]);
+    echo $this->Form->button('Add constituent', [
         'onclick' => 'showNextTeaConstituentRow()',
         'type' => 'button',
     ])
@@ -42,15 +42,15 @@ Denkpistes:
      -->
 </table>
 <script>
-    componentNumber = 0
-
+    
     function showNextTeaConstituentRow() {
-        $('#componentsTea').last().append(
-            $.get("/component/htmlElement" + componentNumber, function(data) {
-                $(".result").html(data);
+        componentNumber = 'one'
+        // $('#teaConstituent').last().append(
+            $.get("/tea_rating_app/teaConstituents/htmlElement", function(data) {
+                $("#teaConstituent").html(data);
                 alert("Load was performed.");
             })
-        )
+        // )
     };
 </script>
 <?php

@@ -1,3 +1,8 @@
+<?
+if (isset($AVHtest)) {
+    echo $AVHtest;
+}
+?>
 <tr class="teaConstituent">
     <td><?php echo $this->Form->input('TeaConstituent.0.Ingredient.name'); ?></td>
     <td><?php echo $this->Form->input('TeaConstituent.0.Ingredient.origin'); ?></td>

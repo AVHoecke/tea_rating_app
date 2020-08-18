@@ -6,14 +6,12 @@
  * and open the template in the editor.
  */
 
-class ComponentsController extends AppController
+class TeaConstituentsController extends AppController
 {
     public $helpers = array('Html');
-    public function htmlElement($number)
+    public function htmlElement()
     {
-        return $this->Html->element('Teas/component', [
-            'number' => $number,
-            ]
-        );
+        $this->set('AVHtest', 'bah');
+        $this->render('/Elements/TeaConstituents/singleTeaConstituent');
     }
 }
