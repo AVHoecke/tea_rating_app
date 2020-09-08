@@ -20,37 +20,27 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
         <td><?php echo $this->Form->input('Tea.Rating.comment'); ?></td>
     </tr>
 </table>
+<?php
+echo $this->Form->button('Add constituent', [
+    'onclick' => 'showNextTeaConstituentRow()',
+    'type' => 'button',
+]);
+?>
 <table class="table table-ingredient">
     <tr>
         <td>Ingredients:</td>
     </tr>
     <?php
-    echo $this->element('TeaConstituents/singleTeaConstituent', ['constituentNumber' => 0]);
-    echo $this->Form->button('Add constituent', [
-        'onclick' => 'showNextTeaConstituentRow()',
-        'type' => 'button',
-    ])
+    echo $this->element('/TeaConstituents/singleTeaConstituent');
     ?>
-    <!-- Ik zou een vooringevuld ingredient kunnen gebruiken door: 
-Common Options For Specific Controls 'deafult' te gebruiken. cookbook page 319 -->
-    <!-- 
-Ik wil meerdere ingredienten voor een Thee kunnen invullen. 
-Denkpistes:
-    -met javascript een extra optie toevoegen.
-    -met een button de controller vragen naar een upgedate form ("FormHelper::button")
-    -verwijzen naar een Ingredienten pagina.
-     -->
 </table>
 <script>
     
+        constituentNumber = 0
     function showNextTeaConstituentRow() {
-        componentNumber = 'one'
-        // $('#teaConstituent').last().append(
-            $.get("/tea_rating_app/teaConstituents/htmlElement", function(data) {
-                $("#teaConstituent").html(data);
-                alert("Load was performed.");
+            $.get("/teaConstituents/htmlElement/"+ ++constituentNumber, function(data) {
+                $(data).appendTo(".table-ingredient > tbody")
             })
-        // )
     };
 </script>
 <?php

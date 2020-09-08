@@ -9,9 +9,10 @@
 class TeaConstituentsController extends AppController
 {
     public $helpers = array('Html');
-    public function htmlElement()
+    public function htmlElement($constituentNumber)
     {
-        $this->set('AVHtest', 'bah');
+        $this->layout = 'ajax';
+        $this->set('constituentNumber', $constituentNumber);
         $this->render('/Elements/TeaConstituents/singleTeaConstituent');
     }
 }
