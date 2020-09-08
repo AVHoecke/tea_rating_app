@@ -46,7 +46,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div id="content">
             
             <?php
-			echo $this->Html->getCrumbs(' > ', 'TeaRatingApp');
+			echo $this->Html->getCrumbs(' > ', [
+				'url' => array('controller' => 'index'),
+    'escape' => false]);
 			echo $this->element('navbar');
 			echo $this->fetch('content');
 			?>
