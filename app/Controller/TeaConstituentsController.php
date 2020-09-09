@@ -8,11 +8,13 @@
 
 class TeaConstituentsController extends AppController
 {
-    public $helpers = array('Html');
+    public $helpers = ['Html'];
+    public $uses = ['Tea'];
     public function htmlElement($constituentNumber)
     {
         $this->layout = 'ajax';
         $this->set('constituentNumber', $constituentNumber);
+        $test = $this->enumOptions('Quantity','type');
         $this->render('/Elements/TeaConstituents/singleTeaConstituent');
     }
 }

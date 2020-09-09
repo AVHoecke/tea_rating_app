@@ -1,10 +1,9 @@
 <?php
 class TeasController extends AppController
 {
-
-    public $components = array('Flash');
-    public $helpers = array('Html', 'Form', 'Flash');
-    public $uses = array('Tea', 'Ingredient');
+    public $components = ['Flash'];
+    public $helpers = ['Html', 'Form', 'Flash'];
+    public $uses = ['Tea', 'Ingredient'];
 
     public function index()
     {
@@ -28,12 +27,12 @@ class TeasController extends AppController
     {
         $this->set('ingredients', $this->Ingredient->find('list'));
         if ($this->request->is('post')) {
-            if (!$this->Tea->saveAssociated($this->request->data,['deep' => true,])) {
+            if (!$this->Tea->saveAssociated($this->request->data, ['deep' => true,])) {
                 $this->Flash->error(__('Unable to add your tea and its properties.'));
             } else {
                 $this->Flash->success(__('Your tea and its properties been saved.'));
             };
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect(['action' => 'index']);
         }
     }
 
@@ -53,6 +52,6 @@ class TeasController extends AppController
             );
         }
 
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 }
