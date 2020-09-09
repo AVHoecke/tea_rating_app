@@ -8,9 +8,8 @@
 
 class IngredientsController extends AppController
 {
-
-    public $components = array('Flash');
-    public $helpers = array('Html', 'Form', 'Flash');
+    public $components = ['Flash'];
+    public $helpers = ['Html', 'Form', 'Flash'];
     
 
     public function index()
@@ -47,6 +46,6 @@ class IngredientsController extends AppController
             );
         }
 
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 }

@@ -16,12 +16,14 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
         <td>Rating:</td>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('Tea.Rating.score');   ?></td>
+        <td><?php echo $this->Form->input('Tea.Rating.score', [
+        'options' => Configure::read('Rating.score'),
+    ]); ?></td>
         <td><?php echo $this->Form->input('Tea.Rating.comment'); ?></td>
     </tr>
 </table>
 <?php
-echo $this->Form->button('Add constituent', [
+echo $this->Form->button('Add ingredient', [
     'onclick' => 'showNextTeaConstituentRow()',
     'type' => 'button',
 ]);
