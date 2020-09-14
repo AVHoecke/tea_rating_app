@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 
-class Quantity extends AppModel
+class RatingScore extends AppModel
 {
     public $validate;
-    public $belongsTo = 'TeaConstituent';
+    public $hasMany = 'Rating';
 }

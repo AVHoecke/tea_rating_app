@@ -1,1 +1,2 @@
-<h1>Title.</h1>
+<h1>THEÉ</h1>
+<p>rate your tea's</p>

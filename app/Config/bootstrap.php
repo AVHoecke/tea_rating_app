@@ -96,26 +96,6 @@ Configure::write('Dispatcher.filters', [
 ]);
 
 /**
- * Constants
- */
-Configure::write('Quantity.type', [
-    '%',
-    'GRAM',
-    'PIECE',
-    'CL',
-    'ML',
-	'L',
-]);
-Configure::write('Rating.score', [
-	0,
-	1,
-	2,
-	3,
-	4,
-	5,
-]);
-
-/**
  * Configures default file logging options
  */
 App::uses('CakeLog', 'Log');

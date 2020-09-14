@@ -9,5 +9,5 @@
 class TeaConstituent extends AppModel
 {
     public $belongsTo = ['Tea','Ingredient'];
-    public $hasOne = ['Quantity'];
+    public $hasOne = ['Measurement'];
 }

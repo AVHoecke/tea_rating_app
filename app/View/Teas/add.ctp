@@ -16,9 +16,9 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
         <td>Rating:</td>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('Tea.Rating.score', [
-        'options' => Configure::read('Rating.score'),
-    ]); ?></td>
+        <td><?php echo $this->Form->input('Tea.Rating.rating_score_id', [
+            'options' => $ratingScores
+            ]); ?></td>
         <td><?php echo $this->Form->input('Tea.Rating.comment'); ?></td>
     </tr>
 </table>

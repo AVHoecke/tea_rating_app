@@ -3,7 +3,7 @@ class TeasController extends AppController
 {
     public $components = ['Flash'];
     public $helpers = ['Html', 'Form', 'Flash'];
-    public $uses = ['Tea', 'Ingredient'];
+    public $uses = ['Tea', 'Ingredient','MeasurementType'];
 
     public function index()
     {
@@ -16,16 +16,27 @@ class TeasController extends AppController
             throw new NotFoundException(__('Invalid tea'));
         }
 
-        $tea = $this->Tea->findById($id);
-        if (!$tea) {
+        $tea = $this->Tea->find('threaded', [
+                'conditions' => ['tea_id' => $id],
+                'recursive' => 3,
+            ]);
+        if (!$tea[0]) {
             throw new NotFoundException(__('Invalid tea'));
         }
-        $this->set('tea', $tea);
+        $this->set('tea', $tea[0]);
     }
 
     public function add()
     {
         $this->set('ingredients', $this->Ingredient->find('list'));
+        $this->set('measurementsTypeNames', $this->MeasurementType->find('list', [
+            'fields' => 'MeasurementType.name',
+        ]));
+        
+        $this->set('ratingScores', $this->Tea->Rating->RatingScore->find('list', [
+            'fields' => 'RatingScore.score',
+        ]));
+        
         if ($this->request->is('post')) {
             if (!$this->Tea->saveAssociated($this->request->data, ['deep' => true,])) {
                 $this->Flash->error(__('Unable to add your tea and its properties.'));

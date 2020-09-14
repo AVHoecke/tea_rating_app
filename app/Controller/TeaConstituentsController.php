@@ -14,7 +14,7 @@ class TeaConstituentsController extends AppController
     {
         $this->layout = 'ajax';
         $this->set('constituentNumber', $constituentNumber);
-        $test = $this->enumOptions('Quantity','type');
+        $this->set('measurementsTypeNames', $this->TeaConstituent->Measurement->MeasurementType->findAll('name'));
         $this->render('/Elements/TeaConstituents/singleTeaConstituent');
     }
 }

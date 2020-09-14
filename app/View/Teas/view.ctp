@@ -2,36 +2,34 @@
 
 
 <?php
-//can this be more automated? how the the 'prepend' function work?
-$this->Html->addCrumb('Teas', '/Teas',array('prepend' /*prepend pushes the Crumb in front? */ => true));
-$this->Html->addCrumb('View', 'view/'.$tea['Tea']['id'] );
+// $this->Html->addCrumb('Teas', '/Teas',array('prepend' /*prepend pushes the Crumb in front? */ => true));
+$this->Html->addCrumb('Ingredient', 'ingredient/'.$tea['Tea']['id']);
 ?>
 <h2>Name: <?php echo h($tea['Tea']['name']); ?></h2>
-<h3>Score: <?php echo $tea['Rating']['score']; ?></h3>
+<h3>Score: <?php echo $tea['Rating']['RatingScore']['score']; ?></h3>
 <h3>Taste: <?php echo $tea['Tea']['taste']; ?></h3>
-<?php 
-// echo var_dump($tea);
- ?>
 <br>
 <table>
+    <tr>
+        <h1>Ingredients:</h1>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th>Origin</th>
+        <th>Amount</th>
+        <th>Symbol</th>
+    </tr>
     <?php foreach ($tea['TeaConstituent'] as $teaConstituent) : ?>
-        <tr>
-            <td>
-                <?php 
-                // echo print_r($ingredient); 
-                ?>
-            </td>
-        </tr>
         <tr>
             <td><?php echo $teaConstituent['Ingredient']['name']; ?></td>
             <td>
                 <?php echo $teaConstituent['Ingredient']['origin']; ?>
             </td>
             <td>
-                <?php echo $teaConstituent['Quantity']['type']; ?>
+                <?php echo $teaConstituent['Measurement']['amount']; ?>
             </td>
             <td>
-                <?php echo $teaConstituent['Quantity']['amount']; ?>
+                <?php echo $teaConstituent['Measurement']['MeasurementType']['symbol']; ?>
             </td>
         </tr>
     <?php endforeach; ?>

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class Rating extends AppModel
+class MeasurementType extends AppModel
 {
-    public $belongsTo = ['Tea','RatingScore'];
+    public $hasMany = 'Measurement';
 }
