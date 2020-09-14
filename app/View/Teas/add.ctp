@@ -33,14 +33,14 @@ echo $this->Form->button('Add ingredient', [
         <td>Ingredients:</td>
     </tr>
     <?php
-    echo $this->element('/TeaConstituents/singleTeaConstituent');
+    echo $this->requestAction('teaConstituents/singleTeaConstituent/0');
     ?>
 </table>
 <script>
     
         constituentNumber = 0
     function showNextTeaConstituentRow() {
-            $.get("/teaConstituents/htmlElement/"+ ++constituentNumber, function(data) {
+            $.get("/teaConstituents/singleTeaConstituent/"+ ++constituentNumber, function(data) {
                 $(data).appendTo(".table-ingredient > tbody")
             })
     };

@@ -9,12 +9,14 @@
 class TeaConstituentsController extends AppController
 {
     public $helpers = ['Html'];
-    public $uses = ['Tea'];
-    public function htmlElement($constituentNumber)
+    public $uses = ['Tea','MeasurementType'];
+    public function singleTeaConstituent($constituentNumber)
     {
         $this->layout = 'ajax';
         $this->set('constituentNumber', $constituentNumber);
-        $this->set('measurementsTypeNames', $this->TeaConstituent->Measurement->MeasurementType->findAll('name'));
+        $this->set('measurementsTypeNames', $this->MeasurementType->find('list', [
+            'fields' => 'MeasurementType.name',
+        ]));
         $this->render('/Elements/TeaConstituents/singleTeaConstituent');
     }
 }

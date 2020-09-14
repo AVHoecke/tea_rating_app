@@ -3,7 +3,7 @@ class TeasController extends AppController
 {
     public $components = ['Flash'];
     public $helpers = ['Html', 'Form', 'Flash'];
-    public $uses = ['Tea', 'Ingredient','MeasurementType'];
+    public $uses = ['Tea', 'Ingredient'];
 
     public function index()
     {
@@ -29,9 +29,6 @@ class TeasController extends AppController
     public function add()
     {
         $this->set('ingredients', $this->Ingredient->find('list'));
-        $this->set('measurementsTypeNames', $this->MeasurementType->find('list', [
-            'fields' => 'MeasurementType.name',
-        ]));
         
         $this->set('ratingScores', $this->Tea->Rating->RatingScore->find('list', [
             'fields' => 'RatingScore.score',

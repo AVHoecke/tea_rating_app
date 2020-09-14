@@ -8,6 +8,10 @@
 
 class Measurement extends AppModel
 {
-    public $validate;
+    public $validate = [
+        'amount' => [
+            'rule' => 'notBlank'
+        ],
+    ];
     public $belongsTo = ['TeaConstituent','MeasurementType'];
 }

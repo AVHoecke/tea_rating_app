@@ -12,9 +12,6 @@ class Ingredient extends AppModel
         'name' => [
             'rule' => 'notBlank'
         ],
-        'origin' => [
-           'rule' => 'notBlank'
-        ]
     ];
 
     public $hasMany = 'TeaConstituent';
