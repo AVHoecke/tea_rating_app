@@ -1,4 +1,10 @@
 <?php
+$this->extend('/Teas/common');
+$this->Html->addCrumb(
+    'Add tea',
+    ['controller' => 'teas','action' => 'add']
+);
+$this->end();
 echo $this->Form->create('Tea');
 echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js');
 ?>
@@ -16,10 +22,10 @@ echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js')
         <td>Rating:</td>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('Tea.Rating.rating_score_id', [
+        <td><?php echo $this->Form->input('Rating.rating_score_id', [
             'options' => $ratingScores
             ]); ?></td>
-        <td><?php echo $this->Form->input('Tea.Rating.comment'); ?></td>
+        <td><?php echo $this->Form->input('Rating.comment'); ?></td>
     </tr>
 </table>
 <?php
@@ -33,18 +39,10 @@ echo $this->Form->button('Add ingredient', [
         <td>Ingredients:</td>
     </tr>
     <?php
-    echo $this->requestAction('teaConstituents/singleTeaConstituent/0');
+    echo $this->requestAction('teaConstituents/getConstituentHtmlElement/0');
     ?>
 </table>
-<script>
-    
-        constituentNumber = 0
-    function showNextTeaConstituentRow() {
-            $.get("/teaConstituents/singleTeaConstituent/"+ ++constituentNumber, function(data) {
-                $(data).appendTo(".table-ingredient > tbody")
-            })
-    };
-</script>
 <?php
+echo $this->element('script/addConstituentRow');
 echo $this->Form->end('Save new THEÉ');
 ?>

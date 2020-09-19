@@ -9,4 +9,10 @@
 class MeasurementType extends AppModel
 {
     public $hasMany = 'Measurement';
+    public function getMeasurementTypeNAMES()
+    {
+        return $this->find('list', [
+            'fields' => 'MeasurementType.name',
+        ]);
+    }
 }

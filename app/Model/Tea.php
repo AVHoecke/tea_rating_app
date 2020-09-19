@@ -17,4 +17,11 @@ class Tea extends AppModel
     public $hasMany = 'TeaConstituent';
 
     public $hasOne = 'Rating';
+
+    public function getSCORES()
+    {
+        return $this->Rating->RatingScore->find('list', [
+            'fields' => 'RatingScore.score',
+        ]);
+    }
 }

@@ -3,7 +3,7 @@ class TeasController extends AppController
 {
     public $components = ['Flash'];
     public $helpers = ['Html', 'Form', 'Flash'];
-    public $uses = ['Tea', 'Ingredient'];
+    public $uses = ['Tea', 'Ingredient' ,'MeasurementType'];
 
     public function index()
     {
@@ -30,9 +30,7 @@ class TeasController extends AppController
     {
         $this->set('ingredients', $this->Ingredient->find('list'));
         
-        $this->set('ratingScores', $this->Tea->Rating->RatingScore->find('list', [
-            'fields' => 'RatingScore.score',
-        ]));
+        $this->set('ratingScores', $this->Tea->getSCORES());
         
         if ($this->request->is('post')) {
             if (!$this->Tea->saveAssociated($this->request->data, ['deep' => true,])) {
@@ -61,5 +59,34 @@ class TeasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function edit($id)
+    {
+        $tea = $this->Tea->findById($id);
+        if (!$tea) {
+            throw new NotFoundException(__('Invalid tea'));
+        }
+    
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Tea->id = $id;
+            // $this->Tea->Rating->id;
+            if ($this->Tea->saveAssociated($this->request->data, ['deep' => true,])) {
+                $this->Flash->success(__('Your tea has been updated.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Flash->error(__('Unable to update your tea.'));
+        }
+        
+        
+        if (!$this->request->data) {
+            $this->request->data = $tea;
+            $this->set('ratingScores', $this->Tea->getSCORES());
+            $this->set('measurementTypeNames', $this->MeasurementType->getMeasurementTypeNAMES());
+            $constituentIds = [];
+            foreach ($this->request->data['TeaConstituent'] as $teaConstituentId => $teaConstituentValue){
+                $constituentIds[] = $teaConstituentValue['id'];
+            }
+            $this->set('constituentIds', $constituentIds);
+        }
     }
 }

@@ -9,14 +9,22 @@
 class TeaConstituentsController extends AppController
 {
     public $helpers = ['Html'];
-    public $uses = ['Tea','MeasurementType'];
-    public function singleTeaConstituent($constituentNumber)
+    public $uses = ['Tea','MeasurementType','TeaConstituent'];
+    
+    public function getConstituentHtmlElement($constituentNumber)
     {
         $this->layout = 'ajax';
         $this->set('constituentNumber', $constituentNumber);
-        $this->set('measurementsTypeNames', $this->MeasurementType->find('list', [
-            'fields' => 'MeasurementType.name',
-        ]));
-        $this->render('/Elements/TeaConstituents/singleTeaConstituent');
+        $this->set('measurementTypeNames', $this->MeasurementType->getMeasurementTypeNAMES());
+        $this->render('/Elements/TeaConstituents/teaConstituent');
+    }
+
+    public function delete($id)
+    {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+        $this->TeaConstituent->delete($id);
+        $this->autoRender = false;
     }
 }

@@ -28,13 +28,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<?php
-	echo $this->Html->meta('icon');
+    echo $this->Html->meta('icon');
 
-	echo $this->Html->css('cake.generic');
-	echo $this->fetch('meta');
-	echo $this->fetch('css');
-	echo $this->fetch('script');
-	?>
+    echo $this->Html->css('cake.generic');
+    echo $this->fetch('meta');
+    echo $this->fetch('css');
+    echo $this->fetch('script');
+    ?>
 </head>
 
 <body>
@@ -46,21 +46,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div id="content">
             
             <?php
-			echo $this->Html->getCrumbs(' > ', [
-				'url' => array('controller' => 'index'),
-    'escape' => false]);
-			echo $this->element('navbar');
-			echo $this->fetch('content');
-			?>
+            echo $this->Html->getCrumbs(' > ', [
+                'url' => ['controller' => 'index'],
+    			'escape' => false]);
+            echo $this->element('navbar');
+            echo $this->fetch('content');
+            ?>
 
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(
-				$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-				'https://cakephp.org/',
-				array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-			);
-			?>
+                $this->Html->image('cake.power.gif', ['alt' => $cakeDescription, 'border' => '0']),
+                'https://cakephp.org/',
+                ['target' => '_blank', 'escape' => false, 'id' => 'cake-powered']
+            );
+            ?>
 			<p>
 				<?php echo $cakeVersion; ?>
 			</p>

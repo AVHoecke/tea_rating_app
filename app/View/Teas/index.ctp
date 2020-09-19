@@ -1,7 +1,7 @@
-<!-- File: /app/View/Posts/index.ctp -->
+<!-- File: /app/View/Teas/index.ctp -->
 <?php
-$this->Html->addCrumb('Teas', '/Teas', ['prepend' => true]);
-?>
+$this->extend('/Teas/common');
+$this->end(); ?>
 <?php
 echo $this->Html->link('Add new THEÉ', ['action' => 'add']);
 ?>

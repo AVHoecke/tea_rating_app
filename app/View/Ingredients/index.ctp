@@ -1,7 +1,7 @@
 <!-- File: /app/View/Posts/index.ctp -->
 <?php
-$this->Html->addCrumb('Ingredients', '/Ingredients', ['prepend' => true]);
-?>
+$this->extend('/Ingredients/common');
+$this->end(); ?>
 <h1>Ingredients:</h1>
 <table>
     <tr>
