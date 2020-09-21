@@ -1,3 +1,5 @@
+<!-- File: /app/View/Teas/add.ctp -->
+
 <?php
 $this->extend('/Teas/common');
 $this->Html->addCrumb(
@@ -5,44 +7,59 @@ $this->Html->addCrumb(
     ['controller' => 'teas','action' => 'add']
 );
 $this->end();
-echo $this->Form->create('Tea');
-echo $this->Html->script('//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js');
+echo $this->Form->create('Tea', [
+    'inputDefaults' => [
+        'label' => false,
+        'div' => false
+    ]]);
 ?>
 <table class="table table-tea">
     <tr>
-        <td>Tea:</td>
+        <h1>Tea:</h1>
     </tr>
     <tr>
-        <td><?php echo $this->Form->input('Tea.name'); ?></td>
-        <td><?php echo $this->Form->input('Tea.taste'); ?></td>
+        <th scope="col"><?php echo $this->Form->label('name'); ?></th>
+        <th scope="col"><?php echo $this->Form->label('taste'); ?></th>
+    </tr>
+    <tr>
+        <td><?php echo $this->Form->input('name'); ?></td>
+        <td><?php echo $this->Form->input('taste'); ?></td>
     </tr>
 </table>
 <table class="table table-rating">
     <tr>
-        <td>Rating:</td>
+        <h3>Rating:</h3>
+    </tr>
+    <tr>
+        <th scope="col"><?php echo $this->Form->label('Rating.rating_score_id'); ?></th>
+        <th scope="col"><?php echo $this->Form->label('Rating.comment'); ?></th>
     </tr>
     <tr>
         <td><?php echo $this->Form->input('Rating.rating_score_id', [
             'options' => $ratingScores
-            ]); ?></td>
+        ]); ?></td>
         <td><?php echo $this->Form->input('Rating.comment'); ?></td>
     </tr>
 </table>
-<?php
-echo $this->Form->button('Add ingredient', [
-    'onclick' => 'showNextTeaConstituentRow()',
-    'type' => 'button',
-]);
-?>
 <table class="table table-ingredient">
     <tr>
-        <td>Ingredients:</td>
+        <h3>Ingredients:</h3>
+    </tr>
+    <tr>
+        <th scope="col"><?php echo $this->Form->label('Ingredient.name'); ?></th>
+        <th scope="col"><?php echo $this->Form->label('Ingredient.origin'); ?></th>
+        <th scope="col"><?php echo $this->Form->label('Measurement.amount'); ?></th>
+        <th scope="col"><?php echo $this->Form->label('Measurement.measurement_type_id'); ?></th>
     </tr>
     <?php
     echo $this->requestAction('teaConstituents/getConstituentHtmlElement/0');
     ?>
 </table>
-<?php
+    <?php
+    echo $this->Form->button('Add ingredient', [
+        'onclick' => 'showNextTeaConstituentRow()',
+        'type' => 'button',
+    ]);
 echo $this->element('script/addConstituentRow');
 echo $this->Form->end('Save new THEÉ');
 ?>

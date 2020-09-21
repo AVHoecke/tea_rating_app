@@ -15,15 +15,15 @@ $this->end(); ?>
 <h3>Score: <?php echo $tea['Rating']['RatingScore']['score']; ?></h3>
 <h3>Comment: <?php echo $tea['Rating']['comment']; ?></h3>
 <br>
-<table>
+<table class="table">
     <tr>
-        <h1>Ingredients:</h1>
+        <h3>Ingredients:</h3>
     </tr>
     <tr>
-        <th>Name</th>
-        <th>Origin</th>
-        <th>Amount</th>
-        <th>Symbol</th>
+        <th scope="col">Name</th>
+        <th scope="col">Origin</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Symbol</th>
     </tr>
     <?php foreach ($tea['TeaConstituent'] as $teaConstituent) : ?>
         <tr>

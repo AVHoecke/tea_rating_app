@@ -1,5 +1,5 @@
 <script>
-        constituentNumber = 0;
+        constituentNumber = 1;
         <?php if(isset($constituentIds)) {
             echo "constituentIds = ".json_encode($constituentIds).';';
         } 

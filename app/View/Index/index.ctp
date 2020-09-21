@@ -1,2 +1,2 @@
 <h1>THEÉ</h1>
-<p>rate your tea's</p>
+<h2 class="container-fluid">Rate your tea's.</h2>

@@ -17,9 +17,9 @@ class TeasController extends AppController
         }
 
         $tea = $this->Tea->find('threaded', [
-                'conditions' => ['tea_id' => $id],
-                'recursive' => 3,
-            ]);
+            'conditions' => ['tea_id' => $id],
+            'recursive' => 3,
+        ]);
         if (!$tea[0]) {
             throw new NotFoundException(__('Invalid tea'));
         }
@@ -67,12 +67,11 @@ class TeasController extends AppController
             throw new NotFoundException(__('Invalid tea'));
         }
     
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             $this->Tea->id = $id;
-            // $this->Tea->Rating->id;
             if ($this->Tea->saveAssociated($this->request->data, ['deep' => true,])) {
                 $this->Flash->success(__('Your tea has been updated.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('Unable to update your tea.'));
         }
@@ -83,7 +82,7 @@ class TeasController extends AppController
             $this->set('ratingScores', $this->Tea->getSCORES());
             $this->set('measurementTypeNames', $this->MeasurementType->getMeasurementTypeNAMES());
             $constituentIds = [];
-            foreach ($this->request->data['TeaConstituent'] as $teaConstituentId => $teaConstituentValue){
+            foreach ($this->request->data['TeaConstituent'] as $teaConstituentId => $teaConstituentValue) {
                 $constituentIds[] = $teaConstituentValue['id'];
             }
             $this->set('constituentIds', $constituentIds);

@@ -2,11 +2,11 @@
 <?php
 $this->extend('/Ingredients/common');
 $this->end(); ?>
-<h1>Ingredients:</h1>
-<table>
+<h2>Ingredients:</h2>
+<table class="table">
     <tr>
-        <td>Name:</td>
-        <td>Origin:</td>
+        <th scope="col">Name:</th>
+        <th scope="col">Origin:</th>
     </tr>
     <?php foreach ($ingredients as $ingredient) : ?>
         <tr>
