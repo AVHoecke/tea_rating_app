@@ -32,5 +32,5 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller
 {
-    public $components = ['DebugKit.Toolbar'];
+    // public $components = ['DebugKit.Toolbar'];
 }

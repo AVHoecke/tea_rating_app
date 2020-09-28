@@ -1,13 +1,12 @@
-<!-- File: /app/View/Posts/view.ctp -->
+<!-- File: /app/View/Teas/view.ctp -->
 
 
-<?php
-$this->extend('/Teas/common');
+<?php $this->extend('/Teas/common');
 $this->Html->addCrumb($tea['Tea']['name'], [
     'controller' => 'teas',
     'action' => 'view',
     $tea['Tea']['id'],
-    ]);
+]);
 $this->end(); ?>
 
 <h2>Name: <?php echo h($tea['Tea']['name']); ?></h2>
@@ -26,17 +25,17 @@ $this->end(); ?>
         <th scope="col">Symbol</th>
     </tr>
     <?php foreach ($tea['TeaConstituent'] as $teaConstituent) : ?>
-        <tr>
-            <td><?php echo $teaConstituent['Ingredient']['name']; ?></td>
-            <td>
-                <?php echo $teaConstituent['Ingredient']['origin']; ?>
-            </td>
-            <td>
-                <?php echo $teaConstituent['Measurement']['amount']; ?>
-            </td>
-            <td>
-                <?php echo $teaConstituent['Measurement']['MeasurementType']['symbol']; ?>
-            </td>
-        </tr>
+    <tr>
+        <td><?php echo $teaConstituent['Ingredient']['name']; ?></td>
+        <td>
+            <?php echo $teaConstituent['Ingredient']['origin']; ?>
+        </td>
+        <td>
+            <?php echo $teaConstituent['Measurement']['amount']; ?>
+        </td>
+        <td>
+            <?php echo $teaConstituent['Measurement']['MeasurementType']['symbol']; ?>
+        </td>
+    </tr>
     <?php endforeach; ?>
 </table>

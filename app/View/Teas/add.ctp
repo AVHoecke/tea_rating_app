@@ -55,10 +55,11 @@ echo $this->Form->create('Tea', [
     echo $this->requestAction('teaConstituents/getConstituentHtmlElement/0');
     ?>
 </table>
-    <?php
+<?php
     echo $this->Form->button('Add ingredient', [
         'onclick' => 'showNextTeaConstituentRow()',
         'type' => 'button',
+        'class' => 'basicButton',
     ]);
 echo $this->element('script/addConstituentRow');
 echo $this->Form->end('Save new THEÉ');
