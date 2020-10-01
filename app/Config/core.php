@@ -280,6 +280,8 @@
  * any date & time related errors.
  */
 	//date_default_timezone_set('UTC');
+	date_default_timezone_set('Europe/Brussels'); 
+
 
 /**
  * `Config.timezone` is available in which you can set users' timezone string.

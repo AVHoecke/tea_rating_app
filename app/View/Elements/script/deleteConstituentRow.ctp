@@ -5,7 +5,7 @@
 ]); ?>
 <script>
 function deleteConstituent(constituentNumber) {
-    $(".TeaConstituent" + constituentNumber).remove();
-    $.post("/teaConstituents/delete/" + constituentNumber);
+    $(".TeaConstituent"+constituentNumber).remove();
+    $.post('<?= $this->Html->url(['controller' => 'teaConstituents', 'action' => 'delete']) ?>/'+constituentNumber);
 };
 </script>

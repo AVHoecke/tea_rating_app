@@ -12,7 +12,7 @@
             }
         }
         checkIdInList();   
-        $.get("/teaConstituents/getConstituentHtmlElement/"+ constituentNumber++, function(data) {
+        $.get('<?= $this->Html->url(['controller' => 'teaConstituents', 'action' => 'getConstituentHtmlElement']) ?>/'+ constituentNumber++, function(data) {
             $(data).appendTo(".table-ingredient > tbody")
         })
     };
