@@ -1,15 +1,12 @@
 <nav class="navbar navbar-light bg-light navbar-expand-lg">
-    <?php echo $this->Html->link(
-        $this->Html->image(
-            'teaCup.gif'
-        ),
-        ['controller' => 'index', 'action' => 'index'],
+    <?php echo $this->Html->image(
+        'teaCup.gif',
         [
+            'url' => [
+                'controller' => 'index',
+                'action' => 'index',
+            ] ,
             'class' => 'navbar-brand',
-            'escape' => false,
-            'id' => 'tea-powered',
-            'width' => '48',
-            'height' => '48',
         ]
     );
     ?>
@@ -19,10 +16,26 @@
     <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/teas">Teas</a>
+                <?= $this->Html->link(
+                    'Teas',
+                    [
+                        'controller' => 'Teas',
+                        'action' => 'index'
+                    ],
+                    ['class' => 'nav-link',]
+                )
+                ?>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/ingredients">Ingredients</a>
+                <?= $this->Html->link(
+                    'Ingredients',
+                    [
+                        'controller' => 'Ingredients',
+                        'action' => 'index'
+                    ],
+                    ['class' => 'nav-link',]
+                )
+                ?>
             </li>
         </ul>
     </div>
