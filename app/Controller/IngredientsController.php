@@ -17,32 +17,19 @@ class IngredientsController extends AppController
         $this->set('ingredients', $this->Ingredient->find('all'));
     }
 
-    public function view($id)
-    {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid tea'));
-        }
-        
-        $tea = $this->Tea->findById($id);
-        if (!$tea) {
-            throw new NotFoundException(__('Invalid tea'));
-        }
-        $this->set('tea', $tea);
-    }
-
     public function delete($id)
     {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
 
-        if ($this->Tea->delete($id)) {
+        if ($this->Ingredient->delete($id)) {
             $this->Flash->success(
-                __('The tea with id: %s has been deleted.', h($id))
+                __('The ingredient with id: %s has been deleted.', h($id))
             );
         } else {
             $this->Flash->error(
-                __('The tea with id: %s could not be deleted.', h($id))
+                __('The ingredient with id: %s could not be deleted.', h($id))
             );
         }
 

@@ -12,8 +12,27 @@ $this->end(); ?>
             </tr>
             <?php foreach ($ingredients as $ingredient) : ?>
                 <tr>
-                    <td><?php echo $ingredient['Ingredient']['name']; ?></td>
-                    <td><?php echo $ingredient['Ingredient']['origin']; ?></td>
+                    <td scope="row"><?php echo $ingredient['Ingredient']['id']; ?></td>
+                    <td scope="row"><?php echo $ingredient['Ingredient']['name']; ?></td>
+                    <td scope="row"><?php echo $ingredient['Ingredient']['origin']; ?></td>
+                    <td scope="row">
+                        <?php echo $this->Form->button(
+                            $this->Form->postLink(
+                                'Delete',
+                                [
+                                    'action' => 'delete',
+                                    $ingredient['Ingredient']['id']
+                                ],
+                                [
+                                    'confirm' => 'Are you sure?'
+                                ]
+                            ),
+                            [
+                                'type' => 'button',
+                                'class' => 'basicButton'
+                            ]
+                        ); ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
