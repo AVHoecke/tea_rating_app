@@ -14,8 +14,10 @@
  * @since         CakePHP(tm) v 2.0.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Network\Http;
 
-App::uses('HttpSocketResponse', 'Network/Http');
+use App\Network\Http\HttpSocketResponse;
+
 
 if (class_exists('HttpResponse')) {
 	trigger_error(__d(

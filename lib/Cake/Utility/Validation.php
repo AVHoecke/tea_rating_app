@@ -12,10 +12,12 @@
  * @since         CakePHP(tm) v 1.2.0.3830
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Utility;
 
-App::uses('Multibyte', 'I18n');
-App::uses('File', 'Utility');
-App::uses('CakeNumber', 'Utility');
+use App\I18n\Multibyte;
+use App\Utility\File;
+use App\Utility\Number;
+
 
 // Load multibyte if the extension is missing.
 if (!function_exists('mb_strlen')) {
@@ -269,7 +271,7 @@ class Validation {
 				}
 				break;
 			default:
-				static::$errors[] = __d('cake_dev', 'You must define the $operator parameter for %s', 'Validation::comparison()');
+				static::$errors[] = __d('cake_dev', 'You must define the $operator parameter for {0}', 'Validation::comparison()');
 		}
 		return false;
 	}
@@ -287,7 +289,7 @@ class Validation {
 			return false;
 		}
 		if ($regex === null) {
-			static::$errors[] = __d('cake_dev', 'You must define a regular expression for %s', 'Validation::custom()');
+			static::$errors[] = __d('cake_dev', 'You must define a regular expression for {0}', 'Validation::custom()');
 			return false;
 		}
 		return static::_check($check, $regex);
@@ -875,11 +877,11 @@ class Validation {
 	protected static function _pass($method, $check, $classPrefix) {
 		$className = ucwords($classPrefix) . 'Validation';
 		if (!class_exists($className)) {
-			trigger_error(__d('cake_dev', 'Could not find %s class, unable to complete validation.', $className), E_USER_WARNING);
+			trigger_error(__d('cake_dev', 'Could not find {0} class, unable to complete validation.', $className), E_USER_WARNING);
 			return false;
 		}
 		if (!method_exists($className, $method)) {
-			trigger_error(__d('cake_dev', 'Method %s does not exist on %s unable to complete validation.', $method, $className), E_USER_WARNING);
+			trigger_error(__d('cake_dev', 'Method {0} does not exist on {1} unable to complete validation.', $method, $className), E_USER_WARNING);
 			return false;
 		}
 		$check = (array)$check;
@@ -939,7 +941,7 @@ class Validation {
  * @param string|array $check Value to check.
  * @param array|string $mimeTypes Array of mime types or regex pattern to check.
  * @return bool Success
- * @throws CakeException when mime type can not be determined.
+ * @throws \Exception when mime type can not be determined.
  */
 	public static function mimeType($check, $mimeTypes = array()) {
 		if (is_array($check) && isset($check['tmp_name'])) {
@@ -950,7 +952,7 @@ class Validation {
 		$mime = $File->mime();
 
 		if ($mime === false) {
-			throw new CakeException(__d('cake_dev', 'Can not determine the mimetype.'));
+			throw new \Exception(__d('cake_dev', 'Can not determine the mimetype.'));
 		}
 
 		if (is_string($mimeTypes)) {
@@ -977,7 +979,7 @@ class Validation {
 		}
 
 		if (is_string($size)) {
-			$size = CakeNumber::fromReadableSize($size);
+			$size = Number::fromReadableSize($size);
 		}
 		$filesize = filesize($check);
 

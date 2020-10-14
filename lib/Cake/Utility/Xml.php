@@ -17,8 +17,11 @@
  * @since         CakePHP v .0.10.3.1400
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Utility;
 
-App::uses('HttpSocket', 'Network/Http');
+use App\Network\Http\HttpSocket;
+use Cake\Core\Configure;
+
 
 /**
  * XML handling for CakePHP.
@@ -109,7 +112,7 @@ class Xml {
 			return static::_loadXml(file_get_contents($input), $options);
 		} elseif ($options['readFile'] && strpos($input, 'http://') === 0 || strpos($input, 'https://') === 0) {
 			try {
-				$socket = new HttpSocket(array('request' => array('redirect' => 10)));
+				$socket = new Client(array('request' => array('redirect' => 10)));
 				$response = $socket->get($input);
 				if (!$response->isOk()) {
 					throw new XmlException(__d('cake_dev', 'XML cannot be read.'));

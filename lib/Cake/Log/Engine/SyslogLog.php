@@ -15,8 +15,11 @@
  * @since         CakePHP(tm) v 2.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Log\Engine;
 
-App::uses('BaseLog', 'Log/Engine');
+use App\Log\Engine\BaseLog;
+use Cake\Log\Log;
+
 
 /**
  * Syslog stream for Logging. Writes logs to the system logger
@@ -41,7 +44,7 @@ class SyslogLog extends BaseLog {
  * ## Example:
  *
  * ```
- *	CakeLog::config('error', array(
+ *	Log::config('error', array(
  *		'engine' => 'Syslog',
  *		'types' => array('emergency', 'alert', 'critical', 'error'),
  *		'format' => "%s: My-App - %s",

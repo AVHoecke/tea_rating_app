@@ -15,8 +15,11 @@
  * @since         CakePHP(tm) v 2.2
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Log;
 
-App::uses('ObjectCollection', 'Utility');
+use App\Utility\ObjectCollection;
+use Cake\Core\App;
+
 
 /**
  * Registry of loaded log engines
@@ -39,9 +42,9 @@ class LogEngineCollection extends ObjectCollection {
 		unset($options['engine']);
 		$className = $this->_getLogger($loggerName);
 		$logger = new $className($options);
-		if (!$logger instanceof CakeLogInterface) {
+		if (!$logger instanceof LogInterface) {
 			throw new CakeLogException(
-				__d('cake_dev', 'logger class %s does not implement a %s method.', $loggerName, 'write()')
+				__d('cake_dev', 'logger class {0} does not implement a {1} method.', $loggerName, 'write()')
 			);
 		}
 		$this->_loaded[$name] = $logger;
@@ -64,9 +67,9 @@ class LogEngineCollection extends ObjectCollection {
 		if (substr($loggerName, -3) !== 'Log') {
 			$loggerName .= 'Log';
 		}
-		App::uses($loggerName, $plugin . 'Log/Engine');
+		/* TODO: App::uses($loggerName, $plugin . 'Log/Engine'); */
 		if (!class_exists($loggerName)) {
-			throw new CakeLogException(__d('cake_dev', 'Could not load class %s', $loggerName));
+			throw new CakeLogException(__d('cake_dev', 'Could not load class {0}', $loggerName));
 		}
 		return $loggerName;
 	}

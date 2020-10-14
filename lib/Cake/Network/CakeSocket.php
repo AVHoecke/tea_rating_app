@@ -15,8 +15,10 @@
  * @since         CakePHP(tm) v 1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Network;
 
-App::uses('Validation', 'Utility');
+use App\Utility\Validation;
+
 
 /**
  * CakePHP network socket connection class.
@@ -25,10 +27,10 @@ App::uses('Validation', 'Utility');
  *
  * @package       Cake.Network
  */
-class CakeSocket {
+class Socket {
 
 /**
- * CakeSocket description
+ * Socket description
  *
  * @var string
  */
@@ -63,7 +65,7 @@ class CakeSocket {
 	public $connection = null;
 
 /**
- * This boolean contains the current state of the CakeSocket class
+ * This boolean contains the current state of the Socket class
  *
  * @var bool
  */
@@ -77,7 +79,7 @@ class CakeSocket {
 	public $lastError = array();
 
 /**
- * True if the socket stream is encrypted after a CakeSocket::enableCrypto() call
+ * True if the socket stream is encrypted after a Socket::enableCrypto() call
  *
  * @var bool
  */
@@ -113,7 +115,7 @@ class CakeSocket {
  * Constructor.
  *
  * @param array $config Socket configuration, which will be merged with the base configuration
- * @see CakeSocket::$_baseConfig
+ * @see Socket::$_baseConfig
  */
 	public function __construct($config = array()) {
 		$this->config = array_merge($this->_baseConfig, $config);
@@ -496,7 +498,7 @@ class CakeSocket {
 			$this->encrypted = $enable;
 			return true;
 		}
-		$errorMessage = __d('cake_dev', 'Unable to perform enableCrypto operation on CakeSocket');
+		$errorMessage = __d('cake_dev', 'Unable to perform enableCrypto operation on Socket');
 		$this->setLastError(null, $errorMessage);
 		throw new SocketException($errorMessage);
 	}

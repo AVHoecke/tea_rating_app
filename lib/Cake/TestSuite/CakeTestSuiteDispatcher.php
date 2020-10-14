@@ -15,6 +15,11 @@
  * @since         CakePHP(tm) v 1.3
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\TestSuite;
+
+use App\TestSuite\CakeTestSuiteCommand;
+use Cake\Core\App;
+use Cake\Model\Model;
 
 /**
  * Path to the tests directory of the app.
@@ -35,7 +40,6 @@ if (!defined('APP_TEST_CASES')) {
 	define('APP_TEST_CASES', TESTS . 'Case');
 }
 
-App::uses('CakeTestSuiteCommand', 'TestSuite');
 
 /**
  * CakeTestSuiteDispatcher handles web requests to the test suite and runs the correct action.

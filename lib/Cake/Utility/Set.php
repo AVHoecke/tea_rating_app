@@ -15,9 +15,11 @@
  * @since         CakePHP(tm) v 1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake\Utility;
 
-App::uses('CakeText', 'Utility');
-App::uses('Hash', 'Utility');
+use App\Utility\CakeText;
+use Cake\Utility\Hash;
+
 
 /**
  * Class used for manipulation of arrays.

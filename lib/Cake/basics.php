@@ -17,6 +17,13 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+namespace lib\Cake;
+
+use App\Utility\Debugger;
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\I18n\I18n;
+use Cake\Log\Log;
 
 /**
  * Basic defines for timing functions.
@@ -74,7 +81,6 @@ if (!function_exists('debug')) {
 		if (!Configure::read('debug')) {
 			return;
 		}
-		App::uses('Debugger', 'Utility');
 
 		$file = '';
 		$line = '';
@@ -142,7 +148,6 @@ if (!function_exists('stackTrace')) {
 		if (!Configure::read('debug')) {
 			return;
 		}
-		App::uses('Debugger', 'Utility');
 
 		$options += array('start' => 0);
 		$options['start']++;
@@ -583,7 +588,6 @@ if (!function_exists('__')) {
 			return null;
 		}
 
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 1));
@@ -609,7 +613,6 @@ if (!function_exists('__n')) {
 			return null;
 		}
 
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, null, I18n::LC_MESSAGES, $count);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 3));
@@ -632,7 +635,6 @@ if (!function_exists('__d')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, $domain);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 2));
@@ -659,7 +661,6 @@ if (!function_exists('__dn')) {
 		if (!$singular) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, $domain, I18n::LC_MESSAGES, $count);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 4));
@@ -697,7 +698,6 @@ if (!function_exists('__dc')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, $domain, $category);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 3));
@@ -739,7 +739,6 @@ if (!function_exists('__dcn')) {
 		if (!$singular) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, $domain, $category, $count);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 5));
@@ -773,7 +772,6 @@ if (!function_exists('__c')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, null, $category);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 2));
@@ -797,7 +795,6 @@ if (!function_exists('__x')) {
 			return null;
 		}
 
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, null, null, null, null, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 2));
@@ -824,7 +821,6 @@ if (!function_exists('__xn')) {
 			return null;
 		}
 
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, null, I18n::LC_MESSAGES, $count, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 4));
@@ -848,7 +844,6 @@ if (!function_exists('__dx')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, $domain, null, null, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 3));
@@ -876,7 +871,6 @@ if (!function_exists('__dxn')) {
 		if (!$singular) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, $domain, I18n::LC_MESSAGES, $count, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 5));
@@ -915,7 +909,6 @@ if (!function_exists('__dxc')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, $domain, $category, null, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 4));
@@ -958,7 +951,6 @@ if (!function_exists('__dxcn')) {
 		if (!$singular) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($singular, $plural, $domain, $category, $count, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 6));
@@ -993,7 +985,6 @@ if (!function_exists('__xc')) {
 		if (!$msg) {
 			return null;
 		}
-		App::uses('I18n', 'I18n');
 		$translated = I18n::translate($msg, null, null, $category, null, null, $context);
 		$arguments = func_get_args();
 		return I18n::insertArgs($translated, array_slice($arguments, 3));
@@ -1011,10 +1002,9 @@ if (!function_exists('LogError')) {
  * @link https://book.cakephp.org/2.0/en/core-libraries/global-constants-and-functions.html#LogError
  */
 	function LogError($message) {
-		App::uses('CakeLog', 'Log');
-		$bad = array("\n", "\r", "\t");
+				$bad = array("\n", "\r", "\t");
 		$good = ' ';
-		CakeLog::write('error', str_replace($bad, $good, $message));
+		Log::write('error', str_replace($bad, $good, $message));
 	}
 
 }
